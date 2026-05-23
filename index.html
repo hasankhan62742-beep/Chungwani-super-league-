@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -41,19 +42,15 @@ color:black;
 }
 
 .header h1{
-font-size:40px;
+font-size:38px;
 font-weight:700;
-}
-
-.header p{
-font-weight:600;
 }
 
 .live{
 background:red;
-color:white;
-padding:10px 18px;
+padding:10px 20px;
 border-radius:30px;
+color:white;
 font-weight:700;
 animation:blink 1s infinite;
 }
@@ -123,13 +120,14 @@ gap:15px;
 margin-top:20px;
 }
 
-input{
+input,select{
 padding:14px;
 border:none;
 border-radius:12px;
 background:#1b2942;
 color:white;
 font-size:15px;
+width:100%;
 }
 
 .section-title{
@@ -236,6 +234,7 @@ margin-bottom:10px;
 margin-top:30px;
 text-align:center;
 color:#bbb;
+line-height:30px;
 }
 
 @media(max-width:1100px){
@@ -255,6 +254,7 @@ font-size:28px;
 }
 
 </style>
+
 </head>
 
 <body>
@@ -264,15 +264,25 @@ font-size:28px;
 <div class="header">
 
 <div>
-<h1>🏏 CCL - Chungwani Cricket League</h1>
-<p>
-Prepared By Hasan Khan <br>
+
+<h1>
+🏏 CCL - Chungwani Cricket League
+</h1>
+
+<p style="margin-top:10px;font-weight:600;">
+
+Prepared By Hasan Khan <br><br>
+
 Venue:
-:contentReference[oaicite:0]{index=0}
+Shahid Safdar Cricket Ground Mir Hazar Khan
+
 </p>
+
 </div>
 
-<div class="live">LIVE</div>
+<div class="live">
+LIVE
+</div>
 
 </div>
 
@@ -286,11 +296,15 @@ Venue:
 
 <div class="team">
 
-<h2 id="team1Name">Falcon XI</h2>
+<h2 id="team1Name">Kings</h2>
 
-<div class="score" id="score">0/0</div>
+<div class="score" id="score">
+0/0
+</div>
 
-<div class="overs" id="overs">0.0 Overs</div>
+<div class="overs" id="overs">
+0.0 Overs
+</div>
 
 </div>
 
@@ -308,7 +322,7 @@ Target: 120
 
 <div class="team" style="text-align:right;">
 
-<h2 id="team2Name">Star CC</h2>
+<h2 id="team2Name">Eagles</h2>
 
 <div class="overs">
 Tournament Match
@@ -320,9 +334,25 @@ Tournament Match
 
 <div class="inputs">
 
-<input type="text" id="team1Input" placeholder="Batting Team" value="Falcon XI">
+<select id="team1Input" onchange="updateUI()">
 
-<input type="text" id="team2Input" placeholder="Bowling Team" value="Star CC">
+<option>Kings</option>
+<option>Eagles</option>
+<option>Warriors</option>
+<option>Stars</option>
+<option>Sultan</option>
+
+</select>
+
+<select id="team2Input" onchange="updateUI()">
+
+<option>Eagles</option>
+<option>Kings</option>
+<option>Warriors</option>
+<option>Stars</option>
+<option>Sultan</option>
+
+</select>
 
 <input type="number" id="oversInput" placeholder="Overs" value="10">
 
@@ -340,7 +370,9 @@ Tournament Match
 
 <div class="card" style="margin-top:20px;">
 
-<h2 class="section-title">🎯 Ball By Ball Controls</h2>
+<h2 class="section-title">
+🎯 Ball By Ball Controls
+</h2>
 
 <div class="controls">
 
@@ -372,7 +404,9 @@ Tournament Match
 
 <div class="card" style="margin-top:20px;">
 
-<h2 class="section-title">🏏 Batting Scorecard</h2>
+<h2 class="section-title">
+🏏 Batting Scorecard
+</h2>
 
 <table>
 
@@ -389,24 +423,62 @@ Tournament Match
 
 </thead>
 
-<tbody id="battingTable">
+<tbody>
 
 <tr>
-<td id="bat1">Player 1*</td>
-<td id="bat1Runs">0</td>
-<td id="bat1Balls">0</td>
-<td id="bat14">0</td>
-<td id="bat16">0</td>
-<td id="bat1SR">0</td>
+
+<td id="bat1">
+Player 1*
+</td>
+
+<td id="bat1Runs">
+0
+</td>
+
+<td id="bat1Balls">
+0
+</td>
+
+<td id="bat14">
+0
+</td>
+
+<td id="bat16">
+0
+</td>
+
+<td id="bat1SR">
+0
+</td>
+
 </tr>
 
 <tr>
-<td id="bat2">Player 2</td>
-<td id="bat2Runs">0</td>
-<td id="bat2Balls">0</td>
-<td id="bat24">0</td>
-<td id="bat26">0</td>
-<td id="bat2SR">0</td>
+
+<td id="bat2">
+Player 2
+</td>
+
+<td id="bat2Runs">
+0
+</td>
+
+<td id="bat2Balls">
+0
+</td>
+
+<td id="bat24">
+0
+</td>
+
+<td id="bat26">
+0
+</td>
+
+<td id="bat2SR">
+0
+</td>
+
 </tr>
 
 </tbody>
@@ -417,7 +489,9 @@ Tournament Match
 
 <div class="card" style="margin-top:20px;">
 
-<h2 class="section-title">🎯 Bowling Scorecard</h2>
+<h2 class="section-title">
+🎯 Bowling Scorecard
+</h2>
 
 <table>
 
@@ -436,11 +510,27 @@ Tournament Match
 <tbody>
 
 <tr>
-<td id="bowlerName">Bowler</td>
-<td id="bowlerOvers">0</td>
-<td id="bowlerRuns">0</td>
-<td id="bowlerWickets">0</td>
-<td id="bowlerEco">0</td>
+
+<td id="bowlerName">
+Bowler
+</td>
+
+<td id="bowlerOvers">
+0
+</td>
+
+<td id="bowlerRuns">
+0
+</td>
+
+<td id="bowlerWickets">
+0
+</td>
+
+<td id="bowlerEco">
+0
+</td>
+
 </tr>
 
 </tbody>
@@ -455,7 +545,9 @@ Tournament Match
 
 <div class="card">
 
-<h2 class="section-title">📊 Match Stats</h2>
+<h2 class="section-title">
+📊 Match Stats
+</h2>
 
 <div class="stats-grid">
 
@@ -505,7 +597,9 @@ Tournament Match
 
 <div class="card" style="margin-top:20px;">
 
-<h2 class="section-title">🏆 Points Table</h2>
+<h2 class="section-title">
+🏆 Points Table
+</h2>
 
 <table>
 
@@ -525,21 +619,48 @@ Tournament Match
 <tbody>
 
 <tr>
-<td>Falcon XI</td>
-<td>1</td>
-<td>1</td>
+<td>Kings</td>
 <td>0</td>
-<td>2</td>
-<td>+1.20</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0.00</td>
 </tr>
 
 <tr>
-<td>Star CC</td>
-<td>1</td>
+<td>Eagles</td>
 <td>0</td>
-<td>1</td>
 <td>0</td>
-<td>-1.20</td>
+<td>0</td>
+<td>0</td>
+<td>0.00</td>
+</tr>
+
+<tr>
+<td>Warriors</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0.00</td>
+</tr>
+
+<tr>
+<td>Stars</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0.00</td>
+</tr>
+
+<tr>
+<td>Sultan</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0.00</td>
 </tr>
 
 </tbody>
@@ -550,7 +671,9 @@ Tournament Match
 
 <div class="card commentary" style="margin-top:20px;">
 
-<h2 class="section-title">📢 Live Commentary</h2>
+<h2 class="section-title">
+📢 Live Commentary
+</h2>
 
 <div id="commentaryBox">
 
@@ -568,8 +691,11 @@ Match Started...
 
 <div class="footer">
 
-CCL - Chungwani Cricket League <br>
-Prepared By Hasan Khan
+🏏 CCL - Chungwani Cricket League <br>
+
+Prepared By Hasan Khan <br>
+
+Venue: Shahid Safdar Cricket Ground Mir Hazar Khan
 
 </div>
 
@@ -627,9 +753,16 @@ document.getElementById("rr").innerHTML =
 balls==0 ? "0.00" :
 ((runs/balls)*6).toFixed(2);
 
+let remainingBalls =
+((document.getElementById("oversInput").value*6)-balls);
+
+if(remainingBalls>0){
+
 document.getElementById("reqrr").innerHTML =
 (((document.getElementById("targetInput").value-runs)
-/((document.getElementById("oversInput").value*6)-balls))*6).toFixed(2);
+/remainingBalls)*6).toFixed(2);
+
+}
 
 document.getElementById("fours").innerHTML = fours;
 document.getElementById("sixes").innerHTML = sixes;
@@ -667,8 +800,12 @@ document.getElementById("topBowler").innerHTML =
 document.getElementById("bowlerInput").value +
 " ("+bowlerWickets+"W)";
 
+if(balls>0){
+
 document.getElementById("nrr").innerHTML =
 (((runs/balls)*6)-5).toFixed(2);
+
+}
 
 }
 
