@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <title>CCL | Shahid Safdar Cricket Ground</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #00008B; color: #fff; padding: 20px; }
+        .container { max-width: 800px; margin: auto; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 25px; border-radius: 20px; border: 2px solid #FFD700; }
+        h1 { text-align: center; color: #FFD700; text-transform: uppercase; }
+        .venue { text-align: center; font-style: italic; margin-bottom: 20px; color: #ccc; }
+        .score-board { text-align: center; font-size: 30px; background: #000; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+        button { padding: 12px; border: none; border-radius: 5px; cursor: pointer; background: #DC143C; color: white; font-weight: bold; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: rgba(0,0,0,0.3); }
+        th { background: #FFD700; color: #00008B; padding: 10px; }
+        td { text-align: center; padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .footer { text-align: center; margin-top: 30px; font-size: 14px; color: #FFD700; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CCL - Cricket Champions League</h1>
+        <div class="venue">Shahid Safdar Cricket Ground, Mir Hazar Khan</div>
+        <div class="score-board">Score: <span id="r">0</span>/<span id="w">0</span></div>
+        
+        <div class="grid">
+            <button onclick="addRun(1)">+1 Run</button>
+            <button onclick="addRun(4)">+4 Runs</button>
+            <button onclick="addRun(6)">+6 Runs</button>
+            <button onclick="addWicket()" style="background:#555;">Wicket</button>
+            <button onclick="addRun(1)">Wide/No-Ball</button>
+            <button onclick="endMatch()" style="background:green;">End Match</button>
+        </div>
+
+        <table id="ptsTable">
+            <thead><tr><th>Team</th><th>M</th><th>W</th><th>L</th><th>Pts</th><th>NRR</th></tr></thead>
+            <tbody id="body"></tbody>
+        </table>
+        
+        <div class="footer">Prepared by Hasan Khan</div>
+    </div>
+
+    <script>
+        let runs = 0, wkts = 0;
+        let teams = JSON.parse(localStorage.getItem('ccl_data')) || {
+            "Stars": {m:0, w:0, l:0, pts:0, nrr:0},
+            "Kings": {m:0, w:0, l:0, pts:0, nrr:0},
+            "Warriors": {m:0, w:0, l:0, pts:0, nrr:0},
+            "Sultans": {m:0, w:0, l:0, pts:0, nrr:0},
+            "Eagles": {m:0, w:0, l:0, pts:0, nrr:0}
+        };
+
+        function addRun(n) { runs += n; document.getElementById('r').innerText = runs; }
+        function addWicket() { wkts++; document.getElementById('w').innerText = wkts; }
+
+        function endMatch() {
+            let winner = prompt("Enter Winner Team Name (Stars/Kings/Warriors/Sultans/Eagles):");
+            if (teams[winner]) {
+                teams[winner].w += 1;
+                teams[winner].pts += 2;
+                teams[winner].m += 1;
+                teams[winner].nrr = (runs / 20).toFixed(2); 
+                localStorage.setItem('ccl_data', JSON.stringify(teams));
+                location.reload();
+            }
+        }
+
+        function renderTable() {
+            let body = document.getElementById('body');
+            body.innerHTML = '';
+            for(let t in teams) {
+                body.innerHTML += `<tr><td>${t}</td><td>${teams[t].m}</td><td>${teams[t].w}</td><td>${teams[t].l}</td><td>${teams[t].pts}</td><td>${teams[t].nrr}</td></tr>`;
+            }
+        }
+        renderTable();
+    </script>
+</body>
+</html>
