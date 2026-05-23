@@ -1,78 +1,839 @@
 <!DOCTYPE html>
-<html lang="ur">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>CCL | Shahid Safdar Cricket Ground</title>
-    <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #00008B; color: #fff; padding: 20px; }
-        .container { max-width: 800px; margin: auto; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 25px; border-radius: 20px; border: 2px solid #FFD700; }
-        h1 { text-align: center; color: #FFD700; text-transform: uppercase; }
-        .venue { text-align: center; font-style: italic; margin-bottom: 20px; color: #ccc; }
-        .score-board { text-align: center; font-size: 30px; background: #000; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
-        .grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
-        button { padding: 12px; border: none; border-radius: 5px; cursor: pointer; background: #DC143C; color: white; font-weight: bold; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: rgba(0,0,0,0.3); }
-        th { background: #FFD700; color: #00008B; padding: 10px; }
-        td { text-align: center; padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .footer { text-align: center; margin-top: 30px; font-size: 14px; color: #FFD700; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CCL - Chungwani Cricket League</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#081120;
+color:white;
+padding:20px;
+}
+
+.container{
+max-width:1600px;
+margin:auto;
+}
+
+.header{
+background:linear-gradient(135deg,#00ffb3,#00b3ff);
+padding:25px;
+border-radius:25px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+margin-bottom:25px;
+color:black;
+}
+
+.header h1{
+font-size:40px;
+font-weight:700;
+}
+
+.header p{
+font-weight:600;
+}
+
+.live{
+background:red;
+color:white;
+padding:10px 18px;
+border-radius:30px;
+font-weight:700;
+animation:blink 1s infinite;
+}
+
+@keyframes blink{
+50%{
+opacity:0.5;
+}
+}
+
+.grid{
+display:grid;
+grid-template-columns:2fr 1fr;
+gap:20px;
+}
+
+.card{
+background:#101c2e;
+padding:20px;
+border-radius:20px;
+box-shadow:0 0 20px rgba(0,0,0,0.4);
+}
+
+.scoreboard{
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+gap:20px;
+}
+
+.team h2{
+font-size:34px;
+margin-bottom:10px;
+}
+
+.score{
+font-size:65px;
+font-weight:700;
+color:#00ffb3;
+}
+
+.overs{
+color:#bbb;
+font-size:18px;
+}
+
+.center{
+text-align:center;
+}
+
+.status{
+font-size:26px;
+font-weight:700;
+color:#ffd54f;
+}
+
+.target{
+margin-top:10px;
+font-size:20px;
+}
+
+.inputs{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:15px;
+margin-top:20px;
+}
+
+input{
+padding:14px;
+border:none;
+border-radius:12px;
+background:#1b2942;
+color:white;
+font-size:15px;
+}
+
+.section-title{
+margin-bottom:20px;
+color:#00ffb3;
+font-size:24px;
+}
+
+.controls{
+display:flex;
+flex-wrap:wrap;
+gap:12px;
+}
+
+button{
+padding:14px 20px;
+border:none;
+border-radius:12px;
+font-size:15px;
+font-weight:700;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+.run{
+background:#00ffb3;
+color:black;
+}
+
+.wicket{
+background:#ff4d4d;
+color:white;
+}
+
+.extra{
+background:#ffd54f;
+color:black;
+}
+
+.undo{
+background:#9c27b0;
+color:white;
+}
+
+.reset{
+background:#607d8b;
+color:white;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:10px;
+}
+
+table th{
+background:#00ffb3;
+color:black;
+padding:12px;
+}
+
+table td{
+padding:12px;
+text-align:center;
+border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+.commentary{
+max-height:400px;
+overflow-y:auto;
+}
+
+.comment{
+background:#1b2942;
+padding:12px;
+border-radius:10px;
+margin-bottom:10px;
+}
+
+.stats-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:15px;
+margin-top:20px;
+}
+
+.stat-box{
+background:#18273f;
+padding:18px;
+border-radius:18px;
+text-align:center;
+}
+
+.stat-box h3{
+color:#00ffb3;
+margin-bottom:10px;
+}
+
+.footer{
+margin-top:30px;
+text-align:center;
+color:#bbb;
+}
+
+@media(max-width:1100px){
+
+.grid{
+grid-template-columns:1fr;
+}
+
+.score{
+font-size:45px;
+}
+
+.header h1{
+font-size:28px;
+}
+
+}
+
+</style>
 </head>
+
 <body>
-    <div class="container">
-        <h1>CCL - Cricket Champions League</h1>
-        <div class="venue">Shahid Safdar Cricket Ground, Mir Hazar Khan</div>
-        <div class="score-board">Score: <span id="r">0</span>/<span id="w">0</span></div>
-        
-        <div class="grid">
-            <button onclick="addRun(1)">+1 Run</button>
-            <button onclick="addRun(4)">+4 Runs</button>
-            <button onclick="addRun(6)">+6 Runs</button>
-            <button onclick="addWicket()" style="background:#555;">Wicket</button>
-            <button onclick="addRun(1)">Wide/No-Ball</button>
-            <button onclick="endMatch()" style="background:green;">End Match</button>
-        </div>
 
-        <table id="ptsTable">
-            <thead><tr><th>Team</th><th>M</th><th>W</th><th>L</th><th>Pts</th><th>NRR</th></tr></thead>
-            <tbody id="body"></tbody>
-        </table>
-        
-        <div class="footer">Prepared by Hasan Khan</div>
-    </div>
+<div class="container">
 
-    <script>
-        let runs = 0, wkts = 0;
-        let teams = JSON.parse(localStorage.getItem('ccl_data')) || {
-            "Stars": {m:0, w:0, l:0, pts:0, nrr:0},
-            "Kings": {m:0, w:0, l:0, pts:0, nrr:0},
-            "Warriors": {m:0, w:0, l:0, pts:0, nrr:0},
-            "Sultans": {m:0, w:0, l:0, pts:0, nrr:0},
-            "Eagles": {m:0, w:0, l:0, pts:0, nrr:0}
-        };
+<div class="header">
 
-        function addRun(n) { runs += n; document.getElementById('r').innerText = runs; }
-        function addWicket() { wkts++; document.getElementById('w').innerText = wkts; }
+<div>
+<h1>🏏 CCL - Chungwani Cricket League</h1>
+<p>
+Prepared By Hasan Khan <br>
+Venue:
+:contentReference[oaicite:0]{index=0}
+</p>
+</div>
 
-        function endMatch() {
-            let winner = prompt("Enter Winner Team Name (Stars/Kings/Warriors/Sultans/Eagles):");
-            if (teams[winner]) {
-                teams[winner].w += 1;
-                teams[winner].pts += 2;
-                teams[winner].m += 1;
-                teams[winner].nrr = (runs / 20).toFixed(2); 
-                localStorage.setItem('ccl_data', JSON.stringify(teams));
-                location.reload();
-            }
-        }
+<div class="live">LIVE</div>
 
-        function renderTable() {
-            let body = document.getElementById('body');
-            body.innerHTML = '';
-            for(let t in teams) {
-                body.innerHTML += `<tr><td>${t}</td><td>${teams[t].m}</td><td>${teams[t].w}</td><td>${teams[t].l}</td><td>${teams[t].pts}</td><td>${teams[t].nrr}</td></tr>`;
-            }
-        }
-        renderTable();
-    </script>
+</div>
+
+<div class="grid">
+
+<div>
+
+<div class="card">
+
+<div class="scoreboard">
+
+<div class="team">
+
+<h2 id="team1Name">Falcon XI</h2>
+
+<div class="score" id="score">0/0</div>
+
+<div class="overs" id="overs">0.0 Overs</div>
+
+</div>
+
+<div class="center">
+
+<div class="status" id="status">
+Match Started
+</div>
+
+<div class="target" id="target">
+Target: 120
+</div>
+
+</div>
+
+<div class="team" style="text-align:right;">
+
+<h2 id="team2Name">Star CC</h2>
+
+<div class="overs">
+Tournament Match
+</div>
+
+</div>
+
+</div>
+
+<div class="inputs">
+
+<input type="text" id="team1Input" placeholder="Batting Team" value="Falcon XI">
+
+<input type="text" id="team2Input" placeholder="Bowling Team" value="Star CC">
+
+<input type="number" id="oversInput" placeholder="Overs" value="10">
+
+<input type="number" id="targetInput" placeholder="Target" value="120">
+
+<input type="text" id="strikerInput" placeholder="Striker Name">
+
+<input type="text" id="nonStrikerInput" placeholder="Non Striker Name">
+
+<input type="text" id="bowlerInput" placeholder="Bowler Name">
+
+</div>
+
+</div>
+
+<div class="card" style="margin-top:20px;">
+
+<h2 class="section-title">🎯 Ball By Ball Controls</h2>
+
+<div class="controls">
+
+<button class="run" onclick="addRun(0)">DOT</button>
+
+<button class="run" onclick="addRun(1)">1</button>
+
+<button class="run" onclick="addRun(2)">2</button>
+
+<button class="run" onclick="addRun(3)">3</button>
+
+<button class="run" onclick="addRun(4)">FOUR</button>
+
+<button class="run" onclick="addRun(6)">SIX</button>
+
+<button class="extra" onclick="wide()">WIDE</button>
+
+<button class="extra" onclick="noball()">NO BALL</button>
+
+<button class="wicket" onclick="wicket()">WICKET</button>
+
+<button class="undo" onclick="undo()">UNDO</button>
+
+<button class="reset" onclick="resetMatch()">RESET</button>
+
+</div>
+
+</div>
+
+<div class="card" style="margin-top:20px;">
+
+<h2 class="section-title">🏏 Batting Scorecard</h2>
+
+<table>
+
+<thead>
+
+<tr>
+<th>Batsman</th>
+<th>R</th>
+<th>B</th>
+<th>4s</th>
+<th>6s</th>
+<th>SR</th>
+</tr>
+
+</thead>
+
+<tbody id="battingTable">
+
+<tr>
+<td id="bat1">Player 1*</td>
+<td id="bat1Runs">0</td>
+<td id="bat1Balls">0</td>
+<td id="bat14">0</td>
+<td id="bat16">0</td>
+<td id="bat1SR">0</td>
+</tr>
+
+<tr>
+<td id="bat2">Player 2</td>
+<td id="bat2Runs">0</td>
+<td id="bat2Balls">0</td>
+<td id="bat24">0</td>
+<td id="bat26">0</td>
+<td id="bat2SR">0</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<div class="card" style="margin-top:20px;">
+
+<h2 class="section-title">🎯 Bowling Scorecard</h2>
+
+<table>
+
+<thead>
+
+<tr>
+<th>Bowler</th>
+<th>O</th>
+<th>R</th>
+<th>W</th>
+<th>ECO</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+<td id="bowlerName">Bowler</td>
+<td id="bowlerOvers">0</td>
+<td id="bowlerRuns">0</td>
+<td id="bowlerWickets">0</td>
+<td id="bowlerEco">0</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<div>
+
+<div class="card">
+
+<h2 class="section-title">📊 Match Stats</h2>
+
+<div class="stats-grid">
+
+<div class="stat-box">
+<h3>Run Rate</h3>
+<p id="rr">0.00</p>
+</div>
+
+<div class="stat-box">
+<h3>Req RR</h3>
+<p id="reqrr">0.00</p>
+</div>
+
+<div class="stat-box">
+<h3>Fours</h3>
+<p id="fours">0</p>
+</div>
+
+<div class="stat-box">
+<h3>Sixes</h3>
+<p id="sixes">0</p>
+</div>
+
+<div class="stat-box">
+<h3>Wickets Left</h3>
+<p id="wktsLeft">10</p>
+</div>
+
+<div class="stat-box">
+<h3>Top Scorer</h3>
+<p id="topScorer">-</p>
+</div>
+
+<div class="stat-box">
+<h3>Top Bowler</h3>
+<p id="topBowler">-</p>
+</div>
+
+<div class="stat-box">
+<h3>Net RR</h3>
+<p id="nrr">0.00</p>
+</div>
+
+</div>
+
+</div>
+
+<div class="card" style="margin-top:20px;">
+
+<h2 class="section-title">🏆 Points Table</h2>
+
+<table>
+
+<thead>
+
+<tr>
+<th>Team</th>
+<th>M</th>
+<th>W</th>
+<th>L</th>
+<th>Pts</th>
+<th>NRR</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+<td>Falcon XI</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>+1.20</td>
+</tr>
+
+<tr>
+<td>Star CC</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>-1.20</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<div class="card commentary" style="margin-top:20px;">
+
+<h2 class="section-title">📢 Live Commentary</h2>
+
+<div id="commentaryBox">
+
+<div class="comment">
+Match Started...
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="footer">
+
+CCL - Chungwani Cricket League <br>
+Prepared By Hasan Khan
+
+</div>
+
+</div>
+
+<script>
+
+let runs=0;
+let wickets=0;
+let balls=0;
+let fours=0;
+let sixes=0;
+
+let bat1Runs=0;
+let bat1Balls=0;
+let bat14=0;
+let bat16=0;
+
+let bat2Runs=0;
+let bat2Balls=0;
+
+let bowlerRuns=0;
+let bowlerWickets=0;
+let bowlerBalls=0;
+
+let history=[];
+
+function updateUI(){
+
+document.getElementById("team1Name").innerHTML =
+document.getElementById("team1Input").value;
+
+document.getElementById("team2Name").innerHTML =
+document.getElementById("team2Input").value;
+
+document.getElementById("target").innerHTML =
+"Target: " + document.getElementById("targetInput").value;
+
+document.getElementById("bat1").innerHTML =
+document.getElementById("strikerInput").value + "*";
+
+document.getElementById("bat2").innerHTML =
+document.getElementById("nonStrikerInput").value;
+
+document.getElementById("bowlerName").innerHTML =
+document.getElementById("bowlerInput").value;
+
+document.getElementById("score").innerHTML =
+runs + "/" + wickets;
+
+document.getElementById("overs").innerHTML =
+Math.floor(balls/6) + "." + (balls%6) + " Overs";
+
+document.getElementById("rr").innerHTML =
+balls==0 ? "0.00" :
+((runs/balls)*6).toFixed(2);
+
+document.getElementById("reqrr").innerHTML =
+(((document.getElementById("targetInput").value-runs)
+/((document.getElementById("oversInput").value*6)-balls))*6).toFixed(2);
+
+document.getElementById("fours").innerHTML = fours;
+document.getElementById("sixes").innerHTML = sixes;
+
+document.getElementById("wktsLeft").innerHTML =
+10-wickets;
+
+document.getElementById("bat1Runs").innerHTML = bat1Runs;
+document.getElementById("bat1Balls").innerHTML = bat1Balls;
+document.getElementById("bat14").innerHTML = bat14;
+document.getElementById("bat16").innerHTML = bat16;
+
+document.getElementById("bat1SR").innerHTML =
+bat1Balls==0 ? 0 :
+((bat1Runs/bat1Balls)*100).toFixed(1);
+
+document.getElementById("bowlerRuns").innerHTML =
+bowlerRuns;
+
+document.getElementById("bowlerWickets").innerHTML =
+bowlerWickets;
+
+document.getElementById("bowlerOvers").innerHTML =
+Math.floor(bowlerBalls/6)+"."+(bowlerBalls%6);
+
+document.getElementById("bowlerEco").innerHTML =
+bowlerBalls==0 ? 0 :
+((bowlerRuns/bowlerBalls)*6).toFixed(2);
+
+document.getElementById("topScorer").innerHTML =
+document.getElementById("strikerInput").value +
+" ("+bat1Runs+")";
+
+document.getElementById("topBowler").innerHTML =
+document.getElementById("bowlerInput").value +
+" ("+bowlerWickets+"W)";
+
+document.getElementById("nrr").innerHTML =
+(((runs/balls)*6)-5).toFixed(2);
+
+}
+
+function comment(text){
+
+let box=document.getElementById("commentaryBox");
+
+let div=document.createElement("div");
+
+div.className="comment";
+
+div.innerHTML=text;
+
+box.prepend(div);
+
+}
+
+function save(){
+
+history.push({
+runs,
+wickets,
+balls,
+fours,
+sixes,
+bat1Runs,
+bat1Balls,
+bat14,
+bat16,
+bowlerRuns,
+bowlerWickets,
+bowlerBalls
+});
+
+}
+
+function addRun(run){
+
+save();
+
+runs+=run;
+balls++;
+
+bat1Runs+=run;
+bat1Balls++;
+
+bowlerRuns+=run;
+bowlerBalls++;
+
+if(run==4){
+fours++;
+bat14++;
+}
+
+if(run==6){
+sixes++;
+bat16++;
+}
+
+comment("🏏 "+run+" run scored");
+
+updateUI();
+
+}
+
+function wicket(){
+
+save();
+
+wickets++;
+balls++;
+
+bowlerWickets++;
+bowlerBalls++;
+
+bat1Balls++;
+
+comment("❌ WICKET!");
+
+updateUI();
+
+}
+
+function wide(){
+
+save();
+
+runs++;
+bowlerRuns++;
+
+comment("⚡ Wide Ball");
+
+updateUI();
+
+}
+
+function noball(){
+
+save();
+
+runs++;
+bowlerRuns++;
+
+comment("⚡ No Ball");
+
+updateUI();
+
+}
+
+function undo(){
+
+if(history.length==0) return;
+
+let prev=history.pop();
+
+runs=prev.runs;
+wickets=prev.wickets;
+balls=prev.balls;
+fours=prev.fours;
+sixes=prev.sixes;
+
+bat1Runs=prev.bat1Runs;
+bat1Balls=prev.bat1Balls;
+bat14=prev.bat14;
+bat16=prev.bat16;
+
+bowlerRuns=prev.bowlerRuns;
+bowlerWickets=prev.bowlerWickets;
+bowlerBalls=prev.bowlerBalls;
+
+comment("↩️ Undo");
+
+updateUI();
+
+}
+
+function resetMatch(){
+
+runs=0;
+wickets=0;
+balls=0;
+fours=0;
+sixes=0;
+
+bat1Runs=0;
+bat1Balls=0;
+bat14=0;
+bat16=0;
+
+bowlerRuns=0;
+bowlerWickets=0;
+bowlerBalls=0;
+
+history=[];
+
+document.getElementById("commentaryBox").innerHTML=
+"<div class='comment'>New Match Started...</div>";
+
+updateUI();
+
+}
+
+updateUI();
+
+</script>
+
 </body>
 </html>
