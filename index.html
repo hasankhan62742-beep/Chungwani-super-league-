@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>CCL - Chungwani Cricket League</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-
 *{
 margin:0;
 padding:0;
@@ -25,7 +21,7 @@ padding:20px;
 }
 
 .container{
-max-width:1600px;
+max-width:1700px;
 margin:auto;
 }
 
@@ -56,14 +52,12 @@ animation:blink 1s infinite;
 }
 
 @keyframes blink{
-50%{
-opacity:0.5;
-}
+50%{opacity:0.5;}
 }
 
-.grid{
+.main-grid{
 display:grid;
-grid-template-columns:2fr 1fr;
+grid-template-columns:280px 1fr 350px;
 gap:20px;
 }
 
@@ -72,6 +66,47 @@ background:#101c2e;
 padding:20px;
 border-radius:20px;
 box-shadow:0 0 20px rgba(0,0,0,0.4);
+margin-bottom:20px;
+}
+
+.section-title{
+font-size:22px;
+margin-bottom:20px;
+color:#00ffb3;
+}
+
+.team-box{
+background:#1b2942;
+padding:15px;
+border-radius:15px;
+margin-bottom:12px;
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.team-logo{
+width:60px;
+height:60px;
+border-radius:50%;
+background:#0e1626;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:12px;
+text-align:center;
+overflow:hidden;
+}
+
+.team-logo img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.team-name{
+font-size:20px;
+font-weight:600;
 }
 
 .scoreboard{
@@ -82,35 +117,16 @@ flex-wrap:wrap;
 gap:20px;
 }
 
-.team h2{
-font-size:34px;
-margin-bottom:10px;
-}
-
 .score{
-font-size:65px;
+font-size:70px;
 font-weight:700;
 color:#00ffb3;
 }
 
-.overs{
-color:#bbb;
-font-size:18px;
-}
-
-.center{
-text-align:center;
-}
-
 .status{
-font-size:26px;
+font-size:25px;
 font-weight:700;
 color:#ffd54f;
-}
-
-.target{
-margin-top:10px;
-font-size:20px;
 }
 
 .inputs{
@@ -122,31 +138,16 @@ margin-top:20px;
 
 input,select{
 padding:14px;
-border:none;
-border-radius:12px;
 background:#1b2942;
 color:white;
-font-size:15px;
-width:100%;
-}
-
-.section-title{
-margin-bottom:20px;
-color:#00ffb3;
-font-size:24px;
-}
-
-.controls{
-display:flex;
-flex-wrap:wrap;
-gap:12px;
+border:none;
+border-radius:12px;
 }
 
 button{
-padding:14px 20px;
+padding:14px 18px;
 border:none;
 border-radius:12px;
-font-size:15px;
 font-weight:700;
 cursor:pointer;
 transition:0.3s;
@@ -156,35 +157,40 @@ button:hover{
 transform:scale(1.05);
 }
 
-.run{
-background:#00ffb3;
-color:black;
+.green{background:#00ffb3;color:black;}
+.red{background:#ff4d4d;color:white;}
+.yellow{background:#ffd54f;color:black;}
+.purple{background:#9c27b0;color:white;}
+.gray{background:#607d8b;color:white;}
+.blue{background:#00b3ff;color:black;}
+
+.controls{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
 }
 
-.wicket{
-background:#ff4d4d;
-color:white;
+.stats-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
 }
 
-.extra{
-background:#ffd54f;
-color:black;
+.stat-box{
+background:#1b2942;
+padding:18px;
+border-radius:16px;
+text-align:center;
 }
 
-.undo{
-background:#9c27b0;
-color:white;
-}
-
-.reset{
-background:#607d8b;
-color:white;
+.stat-box h3{
+color:#00ffb3;
+margin-bottom:10px;
 }
 
 table{
 width:100%;
 border-collapse:collapse;
-margin-top:10px;
 }
 
 table th{
@@ -200,7 +206,7 @@ border-bottom:1px solid rgba(255,255,255,0.1);
 }
 
 .commentary{
-max-height:400px;
+max-height:450px;
 overflow-y:auto;
 }
 
@@ -211,25 +217,6 @@ border-radius:10px;
 margin-bottom:10px;
 }
 
-.stats-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:15px;
-margin-top:20px;
-}
-
-.stat-box{
-background:#18273f;
-padding:18px;
-border-radius:18px;
-text-align:center;
-}
-
-.stat-box h3{
-color:#00ffb3;
-margin-bottom:10px;
-}
-
 .footer{
 margin-top:30px;
 text-align:center;
@@ -237,374 +224,65 @@ color:#bbb;
 line-height:30px;
 }
 
-@media(max-width:1100px){
-
-.grid{
+@media(max-width:1200px){
+.main-grid{
 grid-template-columns:1fr;
 }
-
-.score{
-font-size:45px;
 }
-
-.header h1{
-font-size:28px;
-}
-
-}
-
 </style>
-
 </head>
-
 <body>
 
 <div class="container">
 
 <div class="header">
-
 <div>
-
-<h1>
-🏏 CCL - Chungwani Cricket League
-</h1>
-
-<p style="margin-top:10px;font-weight:600;">
-
-Prepared By Hasan Khan <br><br>
-
-Venue:
-Shahid Safdar Cricket Ground Mir Hazar Khan
-
+<h1>🏏 CCL - Chungwani Cricket League</h1>
+<p>
+Prepared By Hasan Khan<br><br>
+Venue: Shahid Safdar Cricket Ground
 </p>
-
+</div>
+<div class="live">LIVE</div>
 </div>
 
-<div class="live">
-LIVE
-</div>
-
-</div>
-
-<div class="grid">
+<div class="main-grid">
 
 <div>
+<div class="card">
+<h2 class="section-title">🏏 Teams Folder</h2>
+
+<div class="team-box">
+<div class="team-logo"><img src="logos/kings.png" onerror="this.style.display='none'"></div>
+<div class="team-name">Kings</div>
+</div>
+
+<div class="team-box">
+<div class="team-logo"><img src="logos/eagles.png" onerror="this.style.display='none'"></div>
+<div class="team-name">Eagles</div>
+</div>
+
+<div class="team-box">
+<div class="team-logo"><img src="logos/warriors.png" onerror="this.style.display='none'"></div>
+<div class="team-name">Warriors</div>
+</div>
+
+<div class="team-box">
+<div class="team-logo"><img src="logos/stars.png" onerror="this.style.display='none'"></div>
+<div class="team-name">Stars</div>
+</div>
+
+<div class="team-box">
+<div class="team-logo"><img src="logos/sultan.png" onerror="this.style.display='none'"></div>
+<div class="team-name">Sultan</div>
+</div>
+
+</div>
 
 <div class="card">
-
-<div class="scoreboard">
-
-<div class="team">
-
-<h2 id="team1Name">Kings</h2>
-
-<div class="score" id="score">
-0/0
-</div>
-
-<div class="overs" id="overs">
-0.0 Overs
-</div>
-
-</div>
-
-<div class="center">
-
-<div class="status" id="status">
-Match Started
-</div>
-
-<div class="target" id="target">
-Target: 120
-</div>
-
-</div>
-
-<div class="team" style="text-align:right;">
-
-<h2 id="team2Name">Eagles</h2>
-
-<div class="overs">
-Tournament Match
-</div>
-
-</div>
-
-</div>
-
-<div class="inputs">
-
-<select id="team1Input" onchange="updateUI()">
-
-<option>Kings</option>
-<option>Eagles</option>
-<option>Warriors</option>
-<option>Stars</option>
-<option>Sultan</option>
-
-</select>
-
-<select id="team2Input" onchange="updateUI()">
-
-<option>Eagles</option>
-<option>Kings</option>
-<option>Warriors</option>
-<option>Stars</option>
-<option>Sultan</option>
-
-</select>
-
-<input type="number" id="oversInput" placeholder="Overs" value="10">
-
-<input type="number" id="targetInput" placeholder="Target" value="120">
-
-<input type="text" id="strikerInput" placeholder="Striker Name">
-
-<input type="text" id="nonStrikerInput" placeholder="Non Striker Name">
-
-<input type="text" id="bowlerInput" placeholder="Bowler Name">
-
-</div>
-
-</div>
-
-<div class="card" style="margin-top:20px;">
-
-<h2 class="section-title">
-🎯 Ball By Ball Controls
-</h2>
-
-<div class="controls">
-
-<button class="run" onclick="addRun(0)">DOT</button>
-
-<button class="run" onclick="addRun(1)">1</button>
-
-<button class="run" onclick="addRun(2)">2</button>
-
-<button class="run" onclick="addRun(3)">3</button>
-
-<button class="run" onclick="addRun(4)">FOUR</button>
-
-<button class="run" onclick="addRun(6)">SIX</button>
-
-<button class="extra" onclick="wide()">WIDE</button>
-
-<button class="extra" onclick="noball()">NO BALL</button>
-
-<button class="wicket" onclick="wicket()">WICKET</button>
-
-<button class="undo" onclick="undo()">UNDO</button>
-
-<button class="reset" onclick="resetMatch()">RESET</button>
-
-</div>
-
-</div>
-
-<div class="card" style="margin-top:20px;">
-
-<h2 class="section-title">
-🏏 Batting Scorecard
-</h2>
-
+<h2 class="section-title">🏆 Tournament Points Table</h2>
 <table>
-
 <thead>
-
-<tr>
-<th>Batsman</th>
-<th>R</th>
-<th>B</th>
-<th>4s</th>
-<th>6s</th>
-<th>SR</th>
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td id="bat1">
-Player 1*
-</td>
-
-<td id="bat1Runs">
-0
-</td>
-
-<td id="bat1Balls">
-0
-</td>
-
-<td id="bat14">
-0
-</td>
-
-<td id="bat16">
-0
-</td>
-
-<td id="bat1SR">
-0
-</td>
-
-</tr>
-
-<tr>
-
-<td id="bat2">
-Player 2
-</td>
-
-<td id="bat2Runs">
-0
-</td>
-
-<td id="bat2Balls">
-0
-</td>
-
-<td id="bat24">
-0
-</td>
-
-<td id="bat26">
-0
-</td>
-
-<td id="bat2SR">
-0
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-<div class="card" style="margin-top:20px;">
-
-<h2 class="section-title">
-🎯 Bowling Scorecard
-</h2>
-
-<table>
-
-<thead>
-
-<tr>
-<th>Bowler</th>
-<th>O</th>
-<th>R</th>
-<th>W</th>
-<th>ECO</th>
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td id="bowlerName">
-Bowler
-</td>
-
-<td id="bowlerOvers">
-0
-</td>
-
-<td id="bowlerRuns">
-0
-</td>
-
-<td id="bowlerWickets">
-0
-</td>
-
-<td id="bowlerEco">
-0
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
-
-<div>
-
-<div class="card">
-
-<h2 class="section-title">
-📊 Match Stats
-</h2>
-
-<div class="stats-grid">
-
-<div class="stat-box">
-<h3>Run Rate</h3>
-<p id="rr">0.00</p>
-</div>
-
-<div class="stat-box">
-<h3>Req RR</h3>
-<p id="reqrr">0.00</p>
-</div>
-
-<div class="stat-box">
-<h3>Fours</h3>
-<p id="fours">0</p>
-</div>
-
-<div class="stat-box">
-<h3>Sixes</h3>
-<p id="sixes">0</p>
-</div>
-
-<div class="stat-box">
-<h3>Wickets Left</h3>
-<p id="wktsLeft">10</p>
-</div>
-
-<div class="stat-box">
-<h3>Top Scorer</h3>
-<p id="topScorer">-</p>
-</div>
-
-<div class="stat-box">
-<h3>Top Bowler</h3>
-<p id="topBowler">-</p>
-</div>
-
-<div class="stat-box">
-<h3>Net RR</h3>
-<p id="nrr">0.00</p>
-</div>
-
-</div>
-
-</div>
-
-<div class="card" style="margin-top:20px;">
-
-<h2 class="section-title">
-🏆 Points Table
-</h2>
-
-<table>
-
-<thead>
-
 <tr>
 <th>Team</th>
 <th>M</th>
@@ -613,76 +291,118 @@ Bowler
 <th>Pts</th>
 <th>NRR</th>
 </tr>
-
 </thead>
-
-<tbody>
-
-<tr>
-<td>Kings</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0.00</td>
-</tr>
-
-<tr>
-<td>Eagles</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0.00</td>
-</tr>
-
-<tr>
-<td>Warriors</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0.00</td>
-</tr>
-
-<tr>
-<td>Stars</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0.00</td>
-</tr>
-
-<tr>
-<td>Sultan</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0.00</td>
-</tr>
-
-</tbody>
-
+<tbody id="pointsTable"></tbody>
 </table>
+</div>
+</div>
+
+<div>
+
+<div class="card">
+<h2 class="section-title">🎮 Match Setup</h2>
+<div class="inputs">
+<select id="team1">
+<option>Kings</option>
+<option>Eagles</option>
+<option>Warriors</option>
+<option>Stars</option>
+<option>Sultan</option>
+</select>
+
+<select id="team2">
+<option>Eagles</option>
+<option>Kings</option>
+<option>Warriors</option>
+<option>Stars</option>
+<option>Sultan</option>
+</select>
+
+<input type="number" id="overs" placeholder="Overs" value="10">
+<input type="text" id="striker" placeholder="Striker Name">
+<input type="text" id="nonStriker" placeholder="Non Striker Name">
+<input type="text" id="bowler" placeholder="Bowler Name">
+</div>
+
+<br>
+<button class="blue" onclick="startMatch()">START MATCH</button>
+</div>
+
+<div class="card">
+<div class="scoreboard">
+<div>
+<h2 id="battingTeam">Kings</h2>
+<div class="score" id="score">0/0</div>
+<div id="oversDisplay">0.0 Overs</div>
+</div>
+
+<div>
+<div class="status" id="matchStatus">Waiting To Start</div>
+<div id="targetText">Target: --</div>
+</div>
+
+<div>
+<h2 id="bowlingTeam">Eagles</h2>
+<div>CCL Tournament</div>
+</div>
+</div>
+</div>
+
+<div class="card">
+<h2 class="section-title">⚡ Ball By Ball Scoring</h2>
+<div class="controls">
+<button class="green" onclick="addRun(0)">DOT</button>
+<button class="green" onclick="addRun(1)">1</button>
+<button class="green" onclick="addRun(2)">2</button>
+<button class="green" onclick="addRun(3)">3</button>
+<button class="green" onclick="addRun(4)">FOUR</button>
+<button class="green" onclick="addRun(6)">SIX</button>
+<button class="yellow" onclick="wideBall()">WIDE</button>
+<button class="yellow" onclick="noBall()">NO BALL</button>
+<button class="red" onclick="wicket()">WICKET</button>
+<button class="purple" onclick="nextInnings()">NEXT INNING</button>
+<button class="gray" onclick="finishMatch()">FINISH MATCH</button>
+</div>
+</div>
+
+<div class="card">
+<h2 class="section-title">🏏 Playing XI</h2>
+<table>
+<tr>
+<th>Player</th>
+<th>Runs</th>
+<th>Balls</th>
+<th>4s</th>
+<th>6s</th>
+</tr>
+<tbody id="playerTable">
+<tr><td id="player1">Striker</td><td id="p1runs">0</td><td id="p1balls">0</td><td id="p14">0</td><td id="p16">0</td></tr>
+<tr><td id="player2">Non Striker</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+</tbody>
+</table>
+</div>
 
 </div>
 
-<div class="card commentary" style="margin-top:20px;">
+<div>
 
-<h2 class="section-title">
-📢 Live Commentary
-</h2>
+<div class="card">
+<h2 class="section-title">📊 Match Stats</h2>
+<div class="stats-grid">
+<div class="stat-box"><h3>Run Rate</h3><p id="rr">0.00</p></div>
+<div class="stat-box"><h3>Required RR</h3><p id="reqrr">0.00</p></div>
+<div class="stat-box"><h3>Fours</h3><p id="fours">0</p></div>
+<div class="stat-box"><h3>Sixes</h3><p id="sixes">0</p></div>
+<div class="stat-box"><h3>Top Scorer</h3><p id="topScorer">-</p></div>
+<div class="stat-box"><h3>Top Bowler</h3><p id="topBowler">-</p></div>
+</div>
+</div>
 
+<div class="card commentary">
+<h2 class="section-title">📢 Live Commentary</h2>
 <div id="commentaryBox">
-
-<div class="comment">
-Match Started...
+<div class="comment">CCL Tournament Ready...</div>
 </div>
-
-</div>
-
 </div>
 
 </div>
@@ -690,259 +410,173 @@ Match Started...
 </div>
 
 <div class="footer">
-
-🏏 CCL - Chungwani Cricket League <br>
-
-Prepared By Hasan Khan <br>
-
-Venue: Shahid Safdar Cricket Ground Mir Hazar Khan
-
+🏏 CCL - Chungwani Cricket League<br>
+Prepared By Hasan Khan<br>
+Venue: Shahid Safdar Cricket Ground
 </div>
 
 </div>
 
 <script>
 
+const teams=["Kings","Eagles","Warriors","Stars","Sultan"];
+
 let runs=0;
 let wickets=0;
 let balls=0;
+let inning=1;
+let target=0;
+let totalOvers=10;
 let fours=0;
 let sixes=0;
+let matchStarted=false;
 
-let bat1Runs=0;
-let bat1Balls=0;
-let bat14=0;
-let bat16=0;
+let battingTeam="Kings";
+let bowlingTeam="Eagles";
 
-let bat2Runs=0;
-let bat2Balls=0;
+let playerStats=JSON.parse(localStorage.getItem("playerStats")) || {};
+let points=JSON.parse(localStorage.getItem("pointsTable")) || {};
 
-let bowlerRuns=0;
-let bowlerWickets=0;
-let bowlerBalls=0;
+teams.forEach(team=>{
+if(!points[team]){
+points[team]={m:0,w:0,l:0,pts:0,nrr:0};
+}
+});
 
-let history=[];
+function saveData(){
+localStorage.setItem("pointsTable",JSON.stringify(points));
+localStorage.setItem("playerStats",JSON.stringify(playerStats));
+}
+
+function renderPoints(){
+let html="";
+
+teams.forEach(team=>{
+let t=points[team];
+html+=`
+<tr>
+<td>${team}</td>
+<td>${t.m}</td>
+<td>${t.w}</td>
+<td>${t.l}</td>
+<td>${t.pts}</td>
+<td>${t.nrr.toFixed(2)}</td>
+</tr>
+`;
+});
+
+document.getElementById("pointsTable").innerHTML=html;
+}
+
+function startMatch(){
+matchStarted=true;
+runs=0;
+wickets=0;
+balls=0;
+fours=0;
+sixes=0;
+inning=1;
+
+totalOvers=parseInt(document.getElementById("overs").value);
+
+battingTeam=document.getElementById("team1").value;
+bowlingTeam=document.getElementById("team2").value;
+
+document.getElementById("battingTeam").innerHTML=battingTeam;
+document.getElementById("bowlingTeam").innerHTML=bowlingTeam;
+
+document.getElementById("player1").innerHTML=document.getElementById("striker").value;
+document.getElementById("player2").innerHTML=document.getElementById("nonStriker").value;
+
+comment("🏏 Match Started: "+battingTeam+" vs "+bowlingTeam);
+updateUI();
+}
 
 function updateUI(){
+document.getElementById("score").innerHTML=runs+"/"+wickets;
+document.getElementById("oversDisplay").innerHTML=Math.floor(balls/6)+"."+(balls%6)+" Overs";
 
-document.getElementById("team1Name").innerHTML =
-document.getElementById("team1Input").value;
+let rr=balls===0?0:((runs/balls)*6).toFixed(2);
+document.getElementById("rr").innerHTML=rr;
 
-document.getElementById("team2Name").innerHTML =
-document.getElementById("team2Input").value;
+document.getElementById("fours").innerHTML=fours;
+document.getElementById("sixes").innerHTML=sixes;
 
-document.getElementById("target").innerHTML =
-"Target: " + document.getElementById("targetInput").value;
-
-document.getElementById("bat1").innerHTML =
-document.getElementById("strikerInput").value + "*";
-
-document.getElementById("bat2").innerHTML =
-document.getElementById("nonStrikerInput").value;
-
-document.getElementById("bowlerName").innerHTML =
-document.getElementById("bowlerInput").value;
-
-document.getElementById("score").innerHTML =
-runs + "/" + wickets;
-
-document.getElementById("overs").innerHTML =
-Math.floor(balls/6) + "." + (balls%6) + " Overs";
-
-document.getElementById("rr").innerHTML =
-balls==0 ? "0.00" :
-((runs/balls)*6).toFixed(2);
-
-let remainingBalls =
-((document.getElementById("oversInput").value*6)-balls);
-
-if(remainingBalls>0){
-
-document.getElementById("reqrr").innerHTML =
-(((document.getElementById("targetInput").value-runs)
-/remainingBalls)*6).toFixed(2);
-
+if(inning===2){
+let remain=(totalOvers*6)-balls;
+if(remain>0){
+let req=((target-runs)/remain)*6;
+document.getElementById("reqrr").innerHTML=req.toFixed(2);
 }
-
-document.getElementById("fours").innerHTML = fours;
-document.getElementById("sixes").innerHTML = sixes;
-
-document.getElementById("wktsLeft").innerHTML =
-10-wickets;
-
-document.getElementById("bat1Runs").innerHTML = bat1Runs;
-document.getElementById("bat1Balls").innerHTML = bat1Balls;
-document.getElementById("bat14").innerHTML = bat14;
-document.getElementById("bat16").innerHTML = bat16;
-
-document.getElementById("bat1SR").innerHTML =
-bat1Balls==0 ? 0 :
-((bat1Runs/bat1Balls)*100).toFixed(1);
-
-document.getElementById("bowlerRuns").innerHTML =
-bowlerRuns;
-
-document.getElementById("bowlerWickets").innerHTML =
-bowlerWickets;
-
-document.getElementById("bowlerOvers").innerHTML =
-Math.floor(bowlerBalls/6)+"."+(bowlerBalls%6);
-
-document.getElementById("bowlerEco").innerHTML =
-bowlerBalls==0 ? 0 :
-((bowlerRuns/bowlerBalls)*6).toFixed(2);
-
-document.getElementById("topScorer").innerHTML =
-document.getElementById("strikerInput").value +
-" ("+bat1Runs+")";
-
-document.getElementById("topBowler").innerHTML =
-document.getElementById("bowlerInput").value +
-" ("+bowlerWickets+"W)";
-
-if(balls>0){
-
-document.getElementById("nrr").innerHTML =
-(((runs/balls)*6)-5).toFixed(2);
-
 }
-
 }
 
 function comment(text){
-
-let box=document.getElementById("commentaryBox");
-
 let div=document.createElement("div");
-
 div.className="comment";
-
 div.innerHTML=text;
-
-box.prepend(div);
-
-}
-
-function save(){
-
-history.push({
-runs,
-wickets,
-balls,
-fours,
-sixes,
-bat1Runs,
-bat1Balls,
-bat14,
-bat16,
-bowlerRuns,
-bowlerWickets,
-bowlerBalls
-});
-
+document.getElementById("commentaryBox").prepend(div);
 }
 
 function addRun(run){
-
-save();
+if(!matchStarted)return;
 
 runs+=run;
 balls++;
 
-bat1Runs+=run;
-bat1Balls++;
-
-bowlerRuns+=run;
-bowlerBalls++;
-
-if(run==4){
-fours++;
-bat14++;
-}
-
-if(run==6){
-sixes++;
-bat16++;
-}
+if(run===4)fours++;
+if(run===6)sixes++;
 
 comment("🏏 "+run+" run scored");
 
 updateUI();
 
+checkOver();
 }
 
 function wicket(){
-
-save();
+if(!matchStarted)return;
 
 wickets++;
 balls++;
 
-bowlerWickets++;
-bowlerBalls++;
-
-bat1Balls++;
-
 comment("❌ WICKET!");
-
 updateUI();
-
+checkOver();
 }
 
-function wide(){
-
-save();
-
+function wideBall(){
 runs++;
-bowlerRuns++;
-
 comment("⚡ Wide Ball");
-
 updateUI();
-
 }
 
-function noball(){
-
-save();
-
+function noBall(){
 runs++;
-bowlerRuns++;
-
 comment("⚡ No Ball");
-
 updateUI();
-
 }
 
-function undo(){
-
-if(history.length==0) return;
-
-let prev=history.pop();
-
-runs=prev.runs;
-wickets=prev.wickets;
-balls=prev.balls;
-fours=prev.fours;
-sixes=prev.sixes;
-
-bat1Runs=prev.bat1Runs;
-bat1Balls=prev.bat1Balls;
-bat14=prev.bat14;
-bat16=prev.bat16;
-
-bowlerRuns=prev.bowlerRuns;
-bowlerWickets=prev.bowlerWickets;
-bowlerBalls=prev.bowlerBalls;
-
-comment("↩️ Undo");
-
-updateUI();
-
+function checkOver(){
+if(balls>=totalOvers*6){
+if(inning===1){
+nextInnings();
+}else{
+finishMatch();
+}
+}
 }
 
-function resetMatch(){
+function nextInnings(){
+if(inning===1){
+
+target=runs+1;
+
+comment("🎯 Innings Break - Target: "+target);
+
+document.getElementById("targetText").innerHTML="Target: "+target;
+
+inning=2;
 
 runs=0;
 wickets=0;
@@ -950,24 +584,51 @@ balls=0;
 fours=0;
 sixes=0;
 
-bat1Runs=0;
-bat1Balls=0;
-bat14=0;
-bat16=0;
+let oldBatting=battingTeam;
+battingTeam=bowlingTeam;
+bowlingTeam=oldBatting;
 
-bowlerRuns=0;
-bowlerWickets=0;
-bowlerBalls=0;
+document.getElementById("battingTeam").innerHTML=battingTeam;
+document.getElementById("bowlingTeam").innerHTML=bowlingTeam;
 
-history=[];
-
-document.getElementById("commentaryBox").innerHTML=
-"<div class='comment'>New Match Started...</div>";
+document.getElementById("matchStatus").innerHTML="2nd Innings Started";
 
 updateUI();
-
+}
 }
 
+function finishMatch(){
+let winner="";
+let loser="";
+
+if(runs>=target){
+winner=battingTeam;
+loser=bowlingTeam;
+}else{
+winner=bowlingTeam;
+loser=battingTeam;
+}
+
+points[winner].m++;
+points[winner].w++;
+points[winner].pts+=2;
+points[winner].nrr+=1.2;
+
+points[loser].m++;
+points[loser].l++;
+points[loser].nrr-=1.2;
+
+saveData();
+renderPoints();
+
+comment("🏆 "+winner+" won the match!");
+
+document.getElementById("matchStatus").innerHTML=winner+" WON THE MATCH";
+
+matchStarted=false;
+}
+
+renderPoints();
 updateUI();
 
 </script>
